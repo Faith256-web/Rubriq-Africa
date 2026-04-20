@@ -1,0 +1,5 @@
+[
+  { "id": 1, "name": "Faith Mercy", "email": "faithmercy256@gmail.com", "subject": "Product Order", "status": "New", "date": "2024-06-01" },
+  { "id": 2, "name": "Sarah Smith", "email": "sarah.s@ngo.org", "subject": "Partnership", "status": "Reviewed", "date": "2024-05-30" },
+  { "id": 3, "name": "Michael Ochieng", "email": "mochieng@build.co.ug", "subject": "Investment", "status": "Responded", "date": "2024-05-28" }
+]

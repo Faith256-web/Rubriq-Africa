@@ -1,0 +1,115 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+/* ===== ROOT VARIABLES ===== */
+:root {
+  --primary: #2d6a4f;
+  --primary-light: #40916c;
+  --primary-dark: #1b4332;
+
+  --secondary: #e9ecef;
+  --accent: #d8f3dc;
+
+  --background: #f8f9fa;
+  --foreground: #212529;
+
+  --dark-background: #081c15;
+  --dark-foreground: #d8f3dc;
+  --dark-panel: #1b4332;
+
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.4);
+}
+
+/* ===== DARK MODE ===== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--dark-background);
+    --foreground: var(--dark-foreground);
+    --secondary: #1b4332;
+
+    --glass-bg: rgba(8, 28, 21, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* ===== BASE STYLES ===== */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+
+  /* Uncomment if using custom font */
+  /* font-family: var(--font-geist-sans), Arial, sans-serif; */
+
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  /* Prevent horizontal scroll issues */
+  overflow-x: hidden;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+/* ===== GLASS EFFECT ===== */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  border: 1px solid var(--glass-border);
+  border-radius: 1rem;
+
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== HOVER ANIMATIONS ===== */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary-custom {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+
+  border-radius: 50px;
+  padding: 0.75rem 2rem;
+
+  font-weight: 600;
+  transition: all 0.3s ease;
+
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn-primary-custom:hover {
+  background-color: var(--primary-dark);
+  color: #fff;
+
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(45, 106, 79, 0.4);
+}
+
+/* ===== TEXT COLORS ===== */
+.text-primary-custom {
+  color: var(--primary) !important;
+}
+
+/* ===== SECTIONS ===== */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  padding: 8rem 0;
+}
+
+.content-section {
+  padding: 6rem 0;
+}
