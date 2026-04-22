@@ -44,13 +44,25 @@ export default function Navigation() {
             <NavItem href="/contact" label="Contact" active={pathname === "/contact"} />
 
             {/* CTA */}
-            <div className="ms-lg-4 mt-3 mt-lg-0">
+            <div className="ms-lg-4 mt-3 mt-lg-0 d-flex gap-2">
               <Link
-                href="/contact"
-                className="btn-primary-custom"
-                style={{ padding: "0.5rem 1.5rem" }}
+                href="/login?tab=login"
+                className="btn btn-outline-primary fw-bold"
+                style={{
+                  borderColor: "var(--primary-light)",
+                  color: "var(--primary-dark)",
+                  padding: "0.5rem 1.2rem",
+                  borderRadius: "50px",
+                }}
               >
-                Get Involved
+                Log In
+              </Link>
+              <Link
+                href="/login?tab=signup"
+                className="btn-primary-custom"
+                style={{ padding: "0.5rem 1.2rem" }}
+              >
+                Sign Up
               </Link>
             </div>
 

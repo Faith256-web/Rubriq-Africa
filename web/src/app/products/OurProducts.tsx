@@ -14,7 +14,7 @@ type Product = {
   image: string;
 };
 
-export default function OurProducts() {
+export default function Products() {
 
   /* ===== DATA ===== */
   const products: Product[] = [
@@ -43,47 +43,7 @@ export default function OurProducts() {
       description:
         "Aesthetic edging blocks for landscaping. Safe and environmentally friendly.",
       features: ["Aesthetic Design", "Non-Toxic", "Easy Installation"],
-      image: "/rubber_bricks.png",
-    },
-    {
-      id: 4,
-      name: "Standard Solid Paver",
-      category: "Pavers",
-      description: "Robust solid rubber paver offering excellent traction for outdoor utility areas.",
-      features: ["High Traction", "Heavy Load Bearing", "Weatherproof"],
-      image: "/IMAGE3.jpg",
-    },
-    {
-      id: 5,
-      name: "Multi-Purpose Interlock",
-      category: "Pavers",
-      description: "Versatile interlocking paver, easy to install without mortar or adhesives.",
-      features: ["Easy Install", "Interlocking design", "Shock absorbent"],
       image: "/IMAGE4.jpg",
-    },
-    {
-      id: 6,
-      name: "Industrial Bulk Rubber Pavers",
-      category: "Pavers",
-      description: "Commercial-grade rubber pavers, supplied in bulk pallets for large scale development.",
-      features: ["Cost Effective", "Durable", "Fast Coverage"],
-      image: "/rubber_paver_pallet.png",
-    },
-    {
-      id: 7,
-      name: "Eco Thermal Rubber Bricks",
-      category: "Bricks",
-      description: "High thermal insulation rubber bricks designed specifically for sustainable walling.",
-      features: ["Thermal Insulation", "Soundproof", "Lightweight"],
-      image: "/eco_rubber_bricks.png",
-    },
-    {
-      id: 8,
-      name: "Outdoor Rubber Floor Tiles",
-      category: "Landscaping",
-      description: "Aesthetic thick rubber tiles, perfect for playgrounds, patios, and functional outdoor spaces.",
-      features: ["Fall Protection", "Vibrant colors", "Permeable"],
-      image: "/rubber_floor_tiles.png",
     },
   ];
 
@@ -178,28 +138,16 @@ function ProductCard({ product, delay }: ProductCardProps) {
               ))}
             </ul>
 
-            {/* BUTTONS */}
-            <div className="mt-auto d-flex gap-2">
-              <button
-                className="btn w-50 fw-bold rounded-pill"
-                style={{
-                  backgroundColor: "var(--primary)",
-                  color: "white",
-                  border: "none",
-                }}
-              >
-                <i className="bi bi-cart-plus me-1"></i> Add to Cart
-              </button>
-              <button
-                className="btn btn-outline-secondary w-50 rounded-pill fw-bold"
-                style={{
-                  borderColor: "var(--primary-light)",
-                  color: "var(--primary-dark)",
-                }}
-              >
-                Quote
-              </button>
-            </div>
+            {/* BUTTON */}
+            <button
+              className="btn btn-outline-secondary w-100 rounded-pill fw-bold"
+              style={{
+                borderColor: "var(--primary-light)",
+                color: "var(--primary-dark)",
+              }}
+            >
+              Request Quote
+            </button>
           </Card.Body>
 
         </Card>

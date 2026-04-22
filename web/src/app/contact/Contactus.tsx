@@ -6,7 +6,7 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 // Animation library
 import { motion } from "framer-motion";
 
-export default function Contactus() {
+export default function Contact() {
   return (
     <div className="pt-5 mt-5">
       <Container className="mb-5 pb-5">
@@ -61,7 +61,6 @@ export default function Contactus() {
 
                 <h6 className="fw-bold mt-4 mb-3">Follow Us</h6>
                 <div className="d-flex gap-3">
-                  <SocialIcon icon="bi-whatsapp" />
                   <SocialIcon icon="bi-facebook" />
                   <SocialIcon icon="bi-twitter-x" />
                   <SocialIcon icon="bi-linkedin" />
@@ -93,7 +92,7 @@ export default function Contactus() {
                         </Form.Label>
                         <Form.Control
                           type="text"
-                          placeholder="Faith"
+                          placeholder="John"
                           className="py-2 px-3 border-0 bg-light"
                         />
                       </Form.Group>
@@ -106,7 +105,7 @@ export default function Contactus() {
                         </Form.Label>
                         <Form.Control
                           type="text"
-                          placeholder="Mercy"
+                          placeholder="Doe"
                           className="py-2 px-3 border-0 bg-light"
                         />
                       </Form.Group>
@@ -120,7 +119,7 @@ export default function Contactus() {
                     </Form.Label>
                     <Form.Control
                       type="email"
-                      placeholder="faithmercy256@gmail.com"
+                      placeholder="john@company.com"
                       className="py-2 px-3 border-0 bg-light"
                     />
                   </Form.Group>
@@ -165,7 +164,7 @@ export default function Contactus() {
   );
 }
 
-/* ===== TYPES ===== */
+{/* ===== TYPES ===== */}
 
 type ContactItemProps = {
   icon: string;
@@ -177,7 +176,7 @@ type SocialIconProps = {
   icon: string;
 };
 
-/* ===== COMPONENTS ===== */
+{/* ===== COMPONENTS ===== */}
 
 function ContactItem({ icon, title, text }: ContactItemProps) {
   return (

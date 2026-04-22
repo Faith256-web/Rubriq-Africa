@@ -1,6 +1,6 @@
 "use client";
 
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Carousel } from "react-bootstrap";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,17 +13,31 @@ export default function Home() {
         className="position-relative hero-section d-flex align-items-center"
         style={{ minHeight: "85vh", marginTop: "-6rem" }}
       >
-        {/* Background Image */}
-        <div
-          className="position-absolute top-0 start-0 w-100 h-100"
-          style={{
-            backgroundImage: "url('/pavers_applied.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            filter: "brightness(0.35)",
-            zIndex: -1,
-          }}
-        />
+        {/* Background Carousel */}
+        <div className="position-absolute top-0 start-0 w-100 h-100" style={{ zIndex: -1 }}>
+          <Carousel fade controls={false} indicators={false} interval={3500} pause={false} className="h-100 w-100">
+            {[
+              '/pavers_applied.png',
+              '/rubber_paver_pallet.png',
+              '/IMAGE2.jpg',
+              '/IMAGE3.jpg',
+              '/eco_rubber_bricks.png',
+              '/rubber_floor_tiles.png'
+            ].map((src, i) => (
+              <Carousel.Item key={i} className="h-100 w-100">
+                <div
+                  className="w-100 h-100"
+                  style={{
+                    backgroundImage: `url('${src}')`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    filter: "brightness(0.35)"
+                  }}
+                />
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        </div>
 
         <Container className="position-relative pt-5">
           <Row>
@@ -47,7 +61,6 @@ export default function Home() {
                   Building a Sustainable Uganda from the Ground Up
                 </h1>
 
-                {/* Hero textual hook: Describes exactly what we do right away */}
                 <p
                   className="lead text-light mb-5"
                   style={{ fontSize: "1.25rem", maxWidth: "600px" }}
@@ -56,9 +69,7 @@ export default function Home() {
                   affordable construction bricks and pavers.
                 </p>
 
-                {/* Call To Action Buttons (CTAs) */}
                 <div className="d-flex gap-3 flex-wrap">
-                  {/* Primary CTA button leads directly to product catalog page */}
                   <Link href="/products" className="btn-primary-custom fs-5">
                     Explore Our Products{" "}
                     <i className="bi bi-arrow-right ms-2"></i>
@@ -124,11 +135,7 @@ export default function Home() {
       <section className="content-section">
         <Container>
           <Row className="align-items-center gy-5">
-
-            {/* IMAGE: This column showcases our product in action */}
-            {/* Note: The new realistic AI image replaces the older placeholder */}
             <Col lg={6}>
-              {/* motion.div handles entering animations when this column scrolls into the user's viewport */}
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -139,7 +146,7 @@ export default function Home() {
                   style={{ height: "450px" }}
                 >
                   <Image
-                    src="/pavers_applied.png" /* Replaced generic image with our AI generated pavers being applied natively */
+                    src="/pavers_applied.png"
                     alt="African Workers Applying Recycled Paving Bricks"
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -149,9 +156,6 @@ export default function Home() {
               </motion.div>
             </Col>
 
-            {/* TEXT & INFO BLOCK */}
-            {/* NOTE: We removed the heavy detailed mission texts from here since they were confusing the Home Page. */}
-            {/* The About Us content has been fully logically decoupled and is now found independently in src/app/about/page.tsx. */}
             <Col lg={6}>
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
@@ -185,7 +189,6 @@ export default function Home() {
                 />
               </motion.div>
             </Col>
-
           </Row>
         </Container>
       </section>
