@@ -26,109 +26,39 @@ export default function Contactus() {
           </p>
         </motion.div>
 
-        <Row className="gy-5">
-
-          {/* ===== LEFT: CONTACT INFO ===== */}
-          <Col lg={5}>
+        <Row className="justify-content-center">
+          <Col lg={8}>
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <div className="glass-panel p-5 h-100 shadow-sm">
-
-                <h3 className="fw-bold mb-4">Contact Information</h3>
-
-                <ContactItem
-                  icon="bi-geo-alt-fill"
-                  title="Our Location"
-                  text={`Plot 6, Nsoba Lane\nMbale, Uganda`}
-                />
-
-                <ContactItem
-                  icon="bi-envelope-fill"
-                  title="Email Address"
-                  text="faithmercy256@gmail.com"
-                />
-
-                <ContactItem
-                  icon="bi-telephone-fill"
-                  title="Phone Number"
-                  text="+256 704363651"
-                />
-
-                <hr />
-
-                <h6 className="fw-bold mt-4 mb-3">Follow Us</h6>
-                <div className="d-flex gap-3">
-                  <SocialIcon icon="bi-whatsapp" />
-                  <SocialIcon icon="bi-facebook" />
-                  <SocialIcon icon="bi-twitter-x" />
-                  <SocialIcon icon="bi-linkedin" />
-                </div>
-
-              </div>
-            </motion.div>
-          </Col>
-
-          {/* ===== RIGHT: FORM ===== */}
-          <Col lg={7}>
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4 }}
-            >
-              <div className="glass-panel p-5 shadow-sm">
-
-                <h3 className="fw-bold mb-4">Send an Inquiry</h3>
+              <div className="glass-panel p-5 shadow-lg border-0" style={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}>
+                <h3 className="fw-bold mb-4 text-center">Send an Inquiry</h3>
 
                 <Form>
-
                   <Row className="g-3">
-
                     <Col md={6}>
                       <Form.Group>
-                        <Form.Label className="fw-bold small text-muted">
-                          First Name
-                        </Form.Label>
-                        <Form.Control
-                          type="text"
-                          placeholder="Faith"
-                          className="py-2 px-3 border-0 bg-light"
-                        />
+                        <Form.Label className="fw-bold small text-muted">First Name</Form.Label>
+                        <Form.Control type="text" placeholder="Faith" className="py-2 px-3 border-0 bg-light" />
                       </Form.Group>
                     </Col>
-
                     <Col md={6}>
                       <Form.Group>
-                        <Form.Label className="fw-bold small text-muted">
-                          Last Name
-                        </Form.Label>
-                        <Form.Control
-                          type="text"
-                          placeholder="Mercy"
-                          className="py-2 px-3 border-0 bg-light"
-                        />
+                        <Form.Label className="fw-bold small text-muted">Last Name</Form.Label>
+                        <Form.Control type="text" placeholder="Mercy" className="py-2 px-3 border-0 bg-light" />
                       </Form.Group>
                     </Col>
-
                   </Row>
 
                   <Form.Group className="mt-3">
-                    <Form.Label className="fw-bold small text-muted">
-                      Email Address
-                    </Form.Label>
-                    <Form.Control
-                      type="email"
-                      placeholder="faithmercy256@gmail.com"
-                      className="py-2 px-3 border-0 bg-light"
-                    />
+                    <Form.Label className="fw-bold small text-muted">Email Address</Form.Label>
+                    <Form.Control type="email" placeholder="faithmercy256@gmail.com" className="py-2 px-3 border-0 bg-light" />
                   </Form.Group>
 
                   <Form.Group className="mt-3">
-                    <Form.Label className="fw-bold small text-muted">
-                      Subject / Purpose
-                    </Form.Label>
+                    <Form.Label className="fw-bold small text-muted">Subject / Purpose</Form.Label>
                     <Form.Select className="py-2 px-3 border-0 bg-light text-muted">
                       <option>Select an option...</option>
                       <option>Partnership Inquiry</option>
@@ -139,26 +69,49 @@ export default function Contactus() {
                   </Form.Group>
 
                   <Form.Group className="mt-3">
-                    <Form.Label className="fw-bold small text-muted">
-                      Message
-                    </Form.Label>
-                    <Form.Control
-                      as="textarea"
-                      rows={5}
-                      placeholder="How can we help you?"
-                      className="py-2 px-3 border-0 bg-light"
-                    />
+                    <Form.Label className="fw-bold small text-muted">Message</Form.Label>
+                    <Form.Control as="textarea" rows={5} placeholder="How can we help you?" className="py-2 px-3 border-0 bg-light" />
                   </Form.Group>
 
                   <Button className="btn-primary-custom w-100 py-3 mt-4 d-flex justify-content-center gap-2">
                     Send Message <i className="bi bi-send-fill"></i>
                   </Button>
-
                 </Form>
               </div>
             </motion.div>
           </Col>
+        </Row>
 
+        {/* ===== INFO BOXES ===== */}
+        <Row className="mt-5 g-4">
+          <Col md={6} lg={3}>
+            <div className="p-4 rounded-4 text-center" style={{ backgroundColor: "var(--accent)" }}>
+              <i className="bi bi-geo-alt-fill fs-2 mb-2 text-primary d-block"></i>
+              <h6 className="fw-bold">Location</h6>
+              <p className="text-muted small mb-0">Plot 6, Nsoba Lane<br/>Mbale, Uganda</p>
+            </div>
+          </Col>
+          <Col md={6} lg={3}>
+            <div className="p-4 rounded-4 text-center" style={{ backgroundColor: "var(--accent)" }}>
+              <i className="bi bi-whatsapp fs-2 mb-2 text-primary d-block"></i>
+              <h6 className="fw-bold">WhatsApp Us</h6>
+              <p className="text-muted small mb-0">+256 704363651</p>
+            </div>
+          </Col>
+          <Col md={6} lg={3}>
+            <div className="p-4 rounded-4 text-center" style={{ backgroundColor: "var(--accent)" }}>
+              <i className="bi bi-telephone-fill fs-2 mb-2 text-primary d-block"></i>
+              <h6 className="fw-bold">Call Us</h6>
+              <p className="text-muted small mb-0">+256 704363651</p>
+            </div>
+          </Col>
+          <Col md={6} lg={3}>
+            <div className="p-4 rounded-4 text-center" style={{ backgroundColor: "var(--accent)" }}>
+              <i className="bi bi-envelope-fill fs-2 mb-2 text-primary d-block"></i>
+              <h6 className="fw-bold">Email Us</h6>
+              <p className="text-muted small mb-0">faithmercy256@gmail.com</p>
+            </div>
+          </Col>
         </Row>
       </Container>
     </div>

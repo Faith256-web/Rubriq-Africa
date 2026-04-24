@@ -175,6 +175,113 @@ export default function Aboutus() {
           </Col>
 
         </Row>
+
+        {/* ===== REVIEWS SECTION ===== */}
+        <Row className="mt-5 pt-5 text-center">
+          <Col>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="fw-bold mb-5 text-primary">What Our clients say about us</h2>
+            </motion.div>
+          </Col>
+        </Row>
+
+        <Row className="gy-4">
+          <Col lg={4}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="h-100"
+            >
+              <Card className="h-100 shadow-sm border-0 bg-white" style={{ border: "1px solid var(--primary-light)", borderRadius: "10px" }}>
+                <Card.Body className="text-center p-4">
+                  <div className="d-flex align-items-center justify-content-center mb-3">
+                    <div className="rounded-circle bg-secondary d-flex justify-content-center align-items-center me-3" style={{ width: "50px", height: "50px", color: "white" }}>
+                      <strong>MH</strong>
+                    </div>
+                    <h5 className="mb-0 fw-bold">Mutabazi Henry</h5>
+                  </div>
+                  <div className="text-warning mb-3">
+                    <i className="bi bi-star-fill me-1"></i>
+                    <i className="bi bi-star-fill me-1"></i>
+                    <i className="bi bi-star-fill me-1"></i>
+                    <i className="bi bi-star-fill me-1"></i>
+                    <i className="bi bi-star-fill"></i>
+                  </div>
+                  <p className="text-muted fst-italic">
+                    "World class online hardwarestore well manages and properly stocked."
+                  </p>
+                </Card.Body>
+              </Card>
+            </motion.div>
+          </Col>
+
+          <Col lg={4}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="h-100"
+            >
+              <Card className="h-100 shadow-sm border-0 bg-white" style={{ border: "1px solid var(--primary-light)", borderRadius: "10px" }}>
+                <Card.Body className="text-center p-4">
+                  <div className="d-flex align-items-center justify-content-center mb-3">
+                    <div className="rounded-circle bg-secondary d-flex justify-content-center align-items-center me-3" style={{ width: "50px", height: "50px", color: "white" }}>
+                      <strong>AA</strong>
+                    </div>
+                    <h5 className="mb-0 fw-bold">Arinaitwe Allan</h5>
+                  </div>
+                  <div className="text-warning mb-3">
+                    <i className="bi bi-star-fill me-1"></i>
+                    <i className="bi bi-star-fill me-1"></i>
+                    <i className="bi bi-star-fill me-1"></i>
+                    <i className="bi bi-star-fill me-1"></i>
+                    <i className="bi bi-star-fill"></i>
+                  </div>
+                  <p className="text-muted fst-italic">
+                    "5 star customer service at Okuosi Hardware"
+                  </p>
+                </Card.Body>
+              </Card>
+            </motion.div>
+          </Col>
+
+          <Col lg={4}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="h-100"
+            >
+              <Card className="h-100 shadow-sm border-0 bg-white" style={{ border: "1px solid var(--primary-light)", borderRadius: "10px" }}>
+                <Card.Body className="text-center p-4">
+                  <div className="d-flex align-items-center justify-content-center mb-3">
+                    <div className="rounded-circle bg-secondary d-flex justify-content-center align-items-center me-3" style={{ width: "50px", height: "50px", color: "white" }}>
+                      <strong>AA</strong>
+                    </div>
+                    <h5 className="mb-0 fw-bold">Ainembabazi Annet</h5>
+                  </div>
+                  <div className="text-warning mb-3">
+                    <i className="bi bi-star-fill me-1"></i>
+                    <i className="bi bi-star-fill me-1"></i>
+                    <i className="bi bi-star-fill me-1"></i>
+                    <i className="bi bi-star-fill me-1"></i>
+                    <i className="bi bi-star-fill"></i>
+                  </div>
+                  <p className="text-muted fst-italic">
+                    "Fantastic service, I contacted them directly on their site and the next thing I know the exact products I needed were at my door."
+                  </p>
+                </Card.Body>
+              </Card>
+            </motion.div>
+          </Col>
+        </Row>
       </Container>
     </div>
   );

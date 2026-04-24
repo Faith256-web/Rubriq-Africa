@@ -11,20 +11,26 @@ export default function Navigation() {
   return (
     <Navbar
       expand="lg"
-      className="glass-panel sticky-top mx-3 mt-3 mb-4 px-3"
-      style={{ zIndex: 1000, borderRadius: "1rem" }}
+      className="sticky-top mx-3 mt-3 mb-4 px-3 shadow-lg"
+      style={{ 
+        zIndex: 1000, 
+        borderRadius: "1rem",
+        background: "linear-gradient(90deg, rgba(21,128,61,0.95) 0%, rgba(249,115,22,0.95) 100%)",
+        backdropFilter: "blur(10px)"
+      }}
+      variant="dark"
     >
       <Container fluid>
 
         {/* ================= BRAND ================= */}
         <Navbar.Brand as={Link} href="/" className="fw-bold d-flex align-items-center">
-          <span className="text-primary-custom d-flex align-items-center" style={{ fontSize: "1.5rem" }}>
+          <span className="text-white d-flex align-items-center" style={{ fontSize: "1.5rem" }}>
             <Image
               src="/IMAGE3.jpg"
               alt="Rubriq Africa Logo"
               width={40}
               height={40}
-              className="me-2 rounded-circle"
+              className="me-2 rounded-circle border border-2 border-white"
               style={{ objectFit: "cover" }}
             />
             Rubriq Africa
@@ -47,10 +53,8 @@ export default function Navigation() {
             <div className="ms-lg-4 mt-3 mt-lg-0 d-flex gap-2">
               <Link
                 href="/login?tab=login"
-                className="btn btn-outline-primary fw-bold"
+                className="btn btn-outline-light fw-bold"
                 style={{
-                  borderColor: "var(--primary-light)",
-                  color: "var(--primary-dark)",
                   padding: "0.5rem 1.2rem",
                   borderRadius: "50px",
                 }}
@@ -59,8 +63,8 @@ export default function Navigation() {
               </Link>
               <Link
                 href="/login?tab=signup"
-                className="btn-primary-custom"
-                style={{ padding: "0.5rem 1.2rem" }}
+                className="btn btn-light text-success fw-bold"
+                style={{ padding: "0.5rem 1.2rem", borderRadius: "50px" }}
               >
                 Sign Up
               </Link>
@@ -87,8 +91,8 @@ function NavItem({ href, label, active }: NavItemProps) {
     <Nav.Link
       as={Link}
       href={href}
-      className={`mx-2 text-decoration-none ${
-        active ? "text-primary-custom fw-bold" : ""
+      className={`mx-2 text-decoration-none text-white ${
+        active ? "fw-bold border-bottom border-2 border-white" : "opacity-75 hover-opacity-100"
       }`}
     >
       {label}

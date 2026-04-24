@@ -45,22 +45,7 @@ export default function OurProducts() {
       features: ["Aesthetic Design", "Non-Toxic", "Easy Installation"],
       image: "/rubber_bricks.png",
     },
-    {
-      id: 4,
-      name: "Standard Solid Paver",
-      category: "Pavers",
-      description: "Robust solid rubber paver offering excellent traction for outdoor utility areas.",
-      features: ["High Traction", "Heavy Load Bearing", "Weatherproof"],
-      image: "/IMAGE3.jpg",
-    },
-    {
-      id: 5,
-      name: "Multi-Purpose Interlock",
-      category: "Pavers",
-      description: "Versatile interlocking paver, easy to install without mortar or adhesives.",
-      features: ["Easy Install", "Interlocking design", "Shock absorbent"],
-      image: "/IMAGE4.jpg",
-    },
+    
     {
       id: 6,
       name: "Industrial Bulk Rubber Pavers",
@@ -161,43 +146,20 @@ function ProductCard({ product, delay }: ProductCardProps) {
           </div>
 
           {/* CONTENT */}
-          <Card.Body className="p-4 d-flex flex-column">
-            <h4 className="fw-bold mb-3">{product.name}</h4>
-
-            <p className="text-muted mb-4 flex-grow-1">
-              {product.description}
-            </p>
-
-            {/* FEATURES */}
-            <ul className="list-unstyled mb-4 text-muted small">
-              {product.features.map((feature, i) => (
-                <li key={i} className="mb-2 d-flex align-items-center">
-                  <i className="bi bi-check-circle-fill text-success me-2"></i>
-                  {feature}
-                </li>
-              ))}
-            </ul>
+          <Card.Body className="p-4 d-flex flex-column text-center">
+            <h5 className="fw-bold mb-3">{product.name}</h5>
 
             {/* BUTTONS */}
-            <div className="mt-auto d-flex gap-2">
+            <div className="mt-auto pt-3">
               <button
-                className="btn w-50 fw-bold rounded-pill"
+                className="btn w-100 fw-bold rounded-pill shadow-sm"
                 style={{
-                  backgroundColor: "var(--primary)",
+                  backgroundColor: "var(--secondary)", /* Use orange for Add to Cart */
                   color: "white",
                   border: "none",
                 }}
               >
-                <i className="bi bi-cart-plus me-1"></i> Add to Cart
-              </button>
-              <button
-                className="btn btn-outline-secondary w-50 rounded-pill fw-bold"
-                style={{
-                  borderColor: "var(--primary-light)",
-                  color: "var(--primary-dark)",
-                }}
-              >
-                Quote
+                Add to Cart
               </button>
             </div>
           </Card.Body>

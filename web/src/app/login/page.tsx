@@ -98,7 +98,7 @@ function LoginContent() {
                   <Form.Label className="fw-bold small">Full Name</Form.Label>
                   <Form.Control 
                     type="text" 
-                    placeholder="John Doe"
+                    placeholder="Faith Mercy"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
@@ -110,7 +110,7 @@ function LoginContent() {
                 <Form.Label className="fw-bold small">Email Address</Form.Label>
                 <Form.Control 
                   type="email" 
-                  placeholder="name@example.com"
+                  placeholder="faithmercy256@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
