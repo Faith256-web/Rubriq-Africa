@@ -1,60 +1,18 @@
 "use client";
 
-// We import useEffect to trigger our backend data fetch, and useRouter to build protective routing
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Container, Row, Col, Card, Table, Badge } from "react-bootstrap";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-// We define our TypeScript strict schema layout so we know exactly what we receive from the database
-type Inquiry = {
-  id: number;
-  name: string;
-  email: string;
-  subject: string;
-  status: "New" | "Reviewed" | "Responded";
-  date: string;
-};
+
 
 export default function AdminDashboard() {
-  const router = useRouter(); // Router handles NextJS transitions securely
-  const [inquiries, setInquiries] = useState<Inquiry[]>([]);
-  const [loading, setLoading] = useState(true); // Loading guard
-
-  // useEffect triggers exactly when the Dashboard mounts on the browser
-  useEffect(() => {
-    // STEP 1: AUTHENTICATION CHECK
-    // Determine if the user successfully visited our /login page
-    const session = localStorage.getItem("rubriq_admin_session");
-    
-    // If not, we forcibly kick them back to login. Privacy and security feature!
-    if (!session) {
-      router.push("/login");
-      return; 
-    }
-
-    // STEP 2: BACKEND COMMUNICATION
-    // Contacting the Node API at /api/inquiries
-    async function fetchBackendData() {
-      try {
-        const response = await fetch("/api/inquiries");
-        const jsonResult = await response.json();
-        
-        // Update the dashboard list dynamically with actual JSON storage data
-        setInquiries(jsonResult);
-      } catch (error) {
-        console.error("Backend Error: Could not fetch inquiries:", error);
-      } finally {
-        setLoading(false); // Clear the loading state
-      }
-    }
-
-    fetchBackendData();
-  }, [router]);
-
-  // Loading safety fallback while we contact the API
-  if (loading) return <div className="text-center pt-5 mt-5 fw-bold">Connecting to Database...</div>;
+  const [inquiries] = useState([
+    { id: 1, name: "John Doe", email: "john@example.com", subject: "Product Order", status: "New", date: "2024-06-01" },
+    { id: 2, name: "Sarah Smith", email: "sarah.s@ngo.org", subject: "Partnership", status: "Reviewed", date: "2024-05-30" },
+    { id: 3, name: "Michael Ochieng", email: "mochieng@build.co.ug", subject: "Investment", status: "Responded", date: "2024-05-28" },
+  ]);
 
   return (
     <div className="pt-5 mt-5">
@@ -159,20 +117,9 @@ export default function AdminDashboard() {
   );
 }
 
-{/* ===== TYPES ===== */}
-
-type DashboardCardProps = {
-  icon: string;
-  title: string;
-  value: string;
-  bg: string;
-  delay: number;
-  darkIcon?: boolean;
-};
-
 {/* ===== COMPONENTS ===== */}
 
-function DashboardCard({ icon, title, value, bg, delay, darkIcon }: DashboardCardProps) {
+function DashboardCard({ icon, title, value, bg, delay, darkIcon }) {
   return (
     <Col md={4}>
       <motion.div
@@ -204,7 +151,7 @@ function DashboardCard({ icon, title, value, bg, delay, darkIcon }: DashboardCar
 
 {/* ===== HELPER FUNCTION ===== */}
 
-function getStatusColor(status: string) {
+function getStatusColor(status) {
   if (status === "New") return "primary";
   if (status === "Reviewed") return "warning";
   return "success";

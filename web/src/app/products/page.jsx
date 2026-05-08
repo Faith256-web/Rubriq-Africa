@@ -4,20 +4,12 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-/* ===== TYPES ===== */
-type Product = {
-  id: number;
-  name: string;
-  category: string;
-  description: string;
-  features: string[];
-  image: string;
-};
 
-export default function Products() {
+
+export default function OurProducts() {
 
   /* ===== DATA ===== */
-  const products: Product[] = [
+  const products = [
     {
       id: 1,
       name: "Eco-Dura Paver Block",
@@ -43,7 +35,32 @@ export default function Products() {
       description:
         "Aesthetic edging blocks for landscaping. Safe and environmentally friendly.",
       features: ["Aesthetic Design", "Non-Toxic", "Easy Installation"],
-      image: "/IMAGE4.jpg",
+      image: "/rubber_bricks.png",
+    },
+
+    {
+      id: 6,
+      name: "Industrial Bulk Rubber Pavers",
+      category: "Pavers",
+      description: "Commercial-grade rubber pavers, supplied in bulk pallets for large scale development.",
+      features: ["Cost Effective", "Durable", "Fast Coverage"],
+      image: "/rubber_paver_pallet.png",
+    },
+    {
+      id: 7,
+      name: "Eco Thermal Rubber Bricks",
+      category: "Bricks",
+      description: "High thermal insulation rubber bricks designed specifically for sustainable walling.",
+      features: ["Thermal Insulation", "Soundproof", "Lightweight"],
+      image: "/eco_rubber_bricks.png",
+    },
+    {
+      id: 8,
+      name: "Outdoor Rubber Floor Tiles",
+      category: "Landscaping",
+      description: "Aesthetic thick rubber tiles, perfect for playgrounds, patios, and functional outdoor spaces.",
+      features: ["Fall Protection", "Vibrant colors", "Permeable"],
+      image: "/rubber_floor_tiles.png",
     },
   ];
 
@@ -59,7 +76,7 @@ export default function Products() {
         >
           <span
             className="badge text-white rounded-pill px-3 py-2 mb-3"
-            style={{ backgroundColor: "var(--primary-light)" }}  // ✅ FIXED (!important removed)
+            style={{ backgroundColor: "#22c55e" }}  // ✅ FIXED (!important removed)
           >
             Our Catalog
           </span>
@@ -82,18 +99,27 @@ export default function Products() {
 
         </Row>
       </Container>
+
+      {/* ===== LOCAL PAGE STYLES ===== */}
+      <style>{`
+        .glass-panel {
+          background: rgba(255, 255, 255, 0.85);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border: 1px solid rgba(255, 255, 255, 0.4);
+          border-radius: 1rem;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+        }
+        .text-primary-custom {
+          color: #15803d !important;
+        }
+      `}</style>
     </div>
   );
 }
 
-/* ===== COMPONENT TYPES ===== */
-type ProductCardProps = {
-  product: Product;
-  delay: number;
-};
-
 /* ===== REUSABLE CARD ===== */
-function ProductCard({ product, delay }: ProductCardProps) {
+function ProductCard({ product, delay }) {
   return (
     <Col lg={4} md={6}>
       <motion.div
@@ -121,33 +147,22 @@ function ProductCard({ product, delay }: ProductCardProps) {
           </div>
 
           {/* CONTENT */}
-          <Card.Body className="p-4 d-flex flex-column">
-            <h4 className="fw-bold mb-3">{product.name}</h4>
+          <Card.Body className="p-4 d-flex flex-column text-center">
+            <h5 className="fw-bold mb-3">{product.name}</h5>
 
-            <p className="text-muted mb-4 flex-grow-1">
-              {product.description}
-            </p>
-
-            {/* FEATURES */}
-            <ul className="list-unstyled mb-4 text-muted small">
-              {product.features.map((feature, i) => (
-                <li key={i} className="mb-2 d-flex align-items-center">
-                  <i className="bi bi-check-circle-fill text-success me-2"></i>
-                  {feature}
-                </li>
-              ))}
-            </ul>
-
-            {/* BUTTON */}
-            <button
-              className="btn btn-outline-secondary w-100 rounded-pill fw-bold"
-              style={{
-                borderColor: "var(--primary-light)",
-                color: "var(--primary-dark)",
-              }}
-            >
-              Request Quote
-            </button>
+            {/* BUTTONS */}
+            <div className="mt-auto pt-3">
+              <button
+                className="btn w-100 fw-bold rounded-pill shadow-sm"
+                style={{
+                  backgroundColor: "#f97316", /* Vibrant Orange */
+                  color: "white",
+                  border: "none",
+                }}
+              >
+                Add to Cart
+              </button>
+            </div>
           </Card.Body>
 
         </Card>

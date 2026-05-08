@@ -28,27 +28,54 @@ function LoginContent() {
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // We use async/await here to wait for the backend API response
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
     setSuccess("");
 
-    setTimeout(() => {
+    try {
       if (isLogin) {
-        if (password === "admin123") {
-          localStorage.setItem("rubriq_admin_session", "true");
-          router.push("/dashboard");
-        } else {
+        // Send a POST request to our login endpoint
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
+        });
+        
+        const data = await response.json();
+
+        if (response.ok) {
           setSuccess("Successfully logged in! Redirecting...");
-          setTimeout(() => router.push("/"), 1500);
+          // Redirect the user based on their role
+          setTimeout(() => router.push(data.role === 'superadmin' ? '/dashboard' : '/'), 1500);
+        } else {
+          // Display the error from the backend if login fails
+          setError(data.message || "Login failed");
         }
       } else {
-        setSuccess("Account successfully created! Please log in.");
-        setIsLogin(true);
+        // Send a POST request to our register endpoint
+        const response = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, password }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setSuccess("Account successfully created! Please log in.");
+          setIsLogin(true); // Switch to login tab
+        } else {
+          setError(data.message || "Registration failed");
+        }
       }
+    } catch (err) {
+      setError("An unexpected error occurred. Please try again.");
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   return (

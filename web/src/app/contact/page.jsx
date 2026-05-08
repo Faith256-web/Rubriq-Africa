@@ -118,21 +118,11 @@ export default function Contactus() {
   );
 }
 
-/* ===== TYPES ===== */
 
-type ContactItemProps = {
-  icon: string;
-  title: string;
-  text: string;
-};
-
-type SocialIconProps = {
-  icon: string;
-};
 
 /* ===== COMPONENTS ===== */
 
-function ContactItem({ icon, title, text }: ContactItemProps) {
+function ContactItem({ icon, title, text }) {
   return (
     <div className="d-flex align-items-center mb-4">
       <div
@@ -156,7 +146,7 @@ function ContactItem({ icon, title, text }: ContactItemProps) {
   );
 }
 
-function SocialIcon({ icon }: SocialIconProps) {
+function SocialIcon({ icon }) {
   return (
     <a
       href="#"

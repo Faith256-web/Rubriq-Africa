@@ -1,6 +1,16 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { z } from 'zod'; // Import Zod for input validation
+
+// Define a strict schema for incoming inquiries
+// We never trust data from browsers, so we validate it here.
+const inquirySchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters").max(100),
+  email: z.string().email("Invalid email address"),
+  subject: z.string().min(2).max(200),
+  message: z.string().optional()
+});
 
 // Define the path to our mock "database" file where inquiries are stored
 const dataFilePath = path.join(process.cwd(), 'src', 'data', 'inquiries.json');
@@ -23,13 +33,21 @@ export async function GET() {
 
 // POST request handler: This allows testing submitting forms to the backend
 // It accepts JSON body, appends it to our json data file, and responses with success
-export async function POST(request: Request) {
+export async function POST(request) {
   try {
-    const body = await request.json();
+    const rawBody = await request.json();
+    
+    // Validate the incoming data strictly against our schema
+    const body = inquirySchema.parse(rawBody);
     
     // Read current data
     const fileData = fs.readFileSync(dataFilePath, 'utf8');
-    const inquiries = JSON.parse(fileData);
+    let inquiries = [];
+    try {
+      inquiries = JSON.parse(fileData);
+    } catch (e) {
+      inquiries = []; // If file is empty or invalid JSON
+    }
     
     // Create new inquiry object
     const newInquiry = {
@@ -47,6 +65,10 @@ export async function POST(request: Request) {
     
     return NextResponse.json({ message: 'Inquiry received successfully!', data: newInquiry }, { status: 201 });
   } catch (error) {
+    if (error instanceof z.ZodError) {
+      // Return validation errors specifically
+      return NextResponse.json({ message: 'Invalid input data', errors: error.errors }, { status: 400 });
+    }
     return NextResponse.json({ message: 'Failed to process request' }, { status: 500 });
   }
 }

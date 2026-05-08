@@ -1,25 +1,52 @@
 "use client";
 
-import { useState } from "react";
+// We import useEffect to trigger our backend data fetch, and useRouter to build protective routing
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Container, Row, Col, Card, Table, Badge } from "react-bootstrap";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-type Inquiry = {
-  id: number;
-  name: string;
-  email: string;
-  subject: string;
-  status: "New" | "Reviewed" | "Responded";
-  date: string;
-};
 
 export default function AdminDashboard() {
-  const [inquiries] = useState<Inquiry[]>([
-    { id: 1, name: "John Doe", email: "john@example.com", subject: "Product Order", status: "New", date: "2024-06-01" },
-    { id: 2, name: "Sarah Smith", email: "sarah.s@ngo.org", subject: "Partnership", status: "Reviewed", date: "2024-05-30" },
-    { id: 3, name: "Michael Ochieng", email: "mochieng@build.co.ug", subject: "Investment", status: "Responded", date: "2024-05-28" },
-  ]);
+  const router = useRouter(); // Router handles NextJS transitions securely
+  const [inquiries, setInquiries] = useState([]);
+  const [loading, setLoading] = useState(true); // Loading guard
+  const [user, setUser] = useState(null); // Store the authenticated user data
+
+  // useEffect triggers exactly when the Dashboard mounts on the browser
+  useEffect(() => {
+    // STEP 1 & 2: BACKEND COMMUNICATION AND AUTHENTICATION CHECK
+    async function fetchData() {
+      try {
+        // First verify the user session securely via http-only cookie
+        const authResponse = await fetch('/api/auth/me');
+        if (!authResponse.ok) {
+          // If unauthorized, kick them back to login
+          router.push("/login");
+          return;
+        }
+        const authData = await authResponse.json();
+        setUser(authData.user);
+
+        // Fetch inquiries from the database
+        const inquiriesResponse = await fetch("/api/inquiries");
+        if (inquiriesResponse.ok) {
+          const jsonResult = await inquiriesResponse.json();
+          setInquiries(jsonResult);
+        }
+      } catch (error) {
+        console.error("Backend Error:", error);
+      } finally {
+        setLoading(false); // Clear the loading state
+      }
+    }
+
+    fetchData();
+  }, [router]);
+
+  // Loading safety fallback while we contact the API
+  if (loading) return <div className="text-center pt-5 mt-5 fw-bold">Connecting to Database...</div>;
 
   return (
     <div className="pt-5 mt-5">
@@ -28,13 +55,23 @@ export default function AdminDashboard() {
         {/* ===== HEADER ===== */}
         <div className="d-flex justify-content-between align-items-center mb-4">
           <div>
-            <h1 className="fw-bold text-primary-custom mb-1">Admin Dashboard</h1>
-            <p className="text-muted">Welcome back. Here is an overview of operations.</p>
+            <h1 className="fw-bold text-primary-custom mb-1">
+              {user?.role === 'superadmin' ? 'Super Admin Dashboard' : 'Admin Dashboard'}
+              {user?.role === 'superadmin' && <Badge bg="danger" className="ms-3 fs-6 align-middle">Full Control</Badge>}
+            </h1>
+            <p className="text-muted">Welcome back, {user?.email}. Here is an overview of operations.</p>
           </div>
 
-          <Link href="/" className="btn btn-outline-secondary rounded-pill">
-            <i className="bi bi-arrow-left me-2"></i> Back to Website
-          </Link>
+          <div className="d-flex gap-2">
+            {user?.role === 'superadmin' && (
+              <button className="btn btn-danger rounded-pill shadow-sm fw-bold">
+                <i className="bi bi-shield-lock me-2"></i> Manage Users
+              </button>
+            )}
+            <Link href="/" className="btn btn-outline-secondary rounded-pill">
+              <i className="bi bi-arrow-left me-2"></i> Back to Website
+            </Link>
+          </div>
         </div>
 
         {/* ===== SUMMARY CARDS ===== */}
@@ -124,20 +161,9 @@ export default function AdminDashboard() {
   );
 }
 
-{/* ===== TYPES ===== */}
-
-type DashboardCardProps = {
-  icon: string;
-  title: string;
-  value: string;
-  bg: string;
-  delay: number;
-  darkIcon?: boolean;
-};
-
 {/* ===== COMPONENTS ===== */}
 
-function DashboardCard({ icon, title, value, bg, delay, darkIcon }: DashboardCardProps) {
+function DashboardCard({ icon, title, value, bg, delay, darkIcon }) {
   return (
     <Col md={4}>
       <motion.div
@@ -169,7 +195,7 @@ function DashboardCard({ icon, title, value, bg, delay, darkIcon }: DashboardCar
 
 {/* ===== HELPER FUNCTION ===== */}
 
-function getStatusColor(status: string) {
+function getStatusColor(status) {
   if (status === "New") return "primary";
   if (status === "Reviewed") return "warning";
   return "success";

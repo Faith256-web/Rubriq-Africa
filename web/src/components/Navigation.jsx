@@ -80,13 +80,7 @@ export default function Navigation() {
 
 /* ================= REUSABLE NAV ITEM ================= */
 
-type NavItemProps = {
-  href: string;
-  label: string;
-  active: boolean;
-};
-
-function NavItem({ href, label, active }: NavItemProps) {
+function NavItem({ href, label, active }) {
   return (
     <Nav.Link
       as={Link}

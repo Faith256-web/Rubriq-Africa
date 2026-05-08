@@ -87,12 +87,7 @@ export default function Footer() {
 
 /* ================= CLEAN REUSABLE COMPONENTS ================= */
 
-type FooterLinkProps = {
-  href: string;
-  label: string;
-};
-
-function FooterLink({ href, label }: FooterLinkProps) {
+function FooterLink({ href, label }) {
   return (
     <li className="mb-2">
       <Link
@@ -106,11 +101,7 @@ function FooterLink({ href, label }: FooterLinkProps) {
   );
 }
 
-type SocialIconProps = {
-  icon: string;
-};
-
-function SocialIcon({ icon }: SocialIconProps) {
+function SocialIcon({ icon }) {
   return (
     <a href="#" className="text-white fs-4">
       <i className={`bi ${icon}`}></i>
